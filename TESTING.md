@@ -6,11 +6,11 @@ Record Unraid version, image version, date and results. Do not commit passwords,
 |---|---|---|
 | Install | Required password and workspace fields shown | Pending |
 | Startup | Container stays running | Pending |
-| Icon | PNG appears on Docker page | Pending |
+| Icon | PNG appears on Docker page | User confirmed on existing installation, 2026-10-25 |
 | Port mapping | WebUI works with alternate host port | Pending |
 | Authentication | Correct password works; wrong password cannot access protected functions | Pending |
 | Workspace | User-approved test edit persists on host | Pending |
-| Ollama | Own endpoint discovers models and answers a prompt | Pending |
+| Ollama | Own endpoint discovers models and answers a prompt | User reports Ollama working on existing installation, 2026-10-25; fresh-template test pending |
 | Recreation | Config and sessions survive Unraid recreation | Pending |
 | Fresh install | Separate appdata and port work without existing settings | Pending |
 
