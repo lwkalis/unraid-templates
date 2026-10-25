@@ -1,0 +1,33 @@
+# Live Unraid testing
+
+Record Unraid version, image version, date and results. Do not commit passwords, tokens or personal server addresses.
+
+| Check | Expected | Status |
+|---|---|---|
+| Install | Required password and workspace fields shown | Pending |
+| Startup | Container stays running | Pending |
+| Icon | PNG appears on Docker page | Pending |
+| Port mapping | WebUI works with alternate host port | Pending |
+| Authentication | Correct password works; wrong password cannot access protected functions | Pending |
+| Workspace | User-approved test edit persists on host | Pending |
+| Ollama | Own endpoint discovers models and answers a prompt | Pending |
+| Recreation | Config and sessions survive Unraid recreation | Pending |
+| Fresh install | Separate appdata and port work without existing settings | Pending |
+
+Read-only checks in Unraid Terminal, substituting the actual container name:
+
+```sh
+docker inspect --format '{{.State.Status}}' OpenCode
+docker exec OpenCode opencode --version
+docker port OpenCode
+```
+
+Inspect logs locally. Redact credentials before sharing: some versions print server credentials during startup.
+
+Check Ollama from Unraid Terminal using your own address:
+
+```sh
+curl --fail --max-time 10 http://YOUR-OLLAMA-HOST:11434/api/tags
+```
+
+This checks host connectivity only. Confirm OpenCode's connection by selecting an Ollama model in WebUI and sending a short prompt.

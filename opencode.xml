@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container version="2">
+  <Name>OpenCode</Name>
+  <Repository>ghcr.io/anomalyco/opencode:2.0.32</Repository>
+  <Registry>https://github.com/anomalyco/opencode/pkgs/container/opencode</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/lwkalis/unraid-templates/issues</Support>
+  <Project>https://opencode.ai</Project>
+  <Overview>OpenCode coding agent with a browser interface using the upstream container image. Choose your own model provider. Ollama requires a separately installed server and provider configuration; no shared server or models are included. Set a password and select a workspace folder. Setup: https://github.com/lwkalis/unraid-templates</Overview>
+  <Category>Tools:</Category>
+  <WebUI>http://[IP]:[PORT:4096]/</WebUI>
+  <Icon>https://raw.githubusercontent.com/lwkalis/unraid-templates/main/icons/opencode.png</Icon>
+  <ExtraParams>--entrypoint=opencode --workdir=/workspace</ExtraParams>
+  <PostArgs>serve --hostname 0.0.0.0 --port 4096</PostArgs>
+  <Config Name="Web UI Port" Target="4096" Default="4096" Mode="tcp" Description="Host port for browser access." Type="Port" Display="always" Required="true" Mask="false">4096</Config>
+  <Config Name="Configuration" Target="/root/.config/opencode" Default="/mnt/user/appdata/opencode/config" Mode="rw" Description="Settings and providers." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/opencode/config</Config>
+  <Config Name="Data" Target="/root/.local/share/opencode" Default="/mnt/user/appdata/opencode/data" Mode="rw" Description="Persistent accounts and application data." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/opencode/data</Config>
+  <Config Name="State" Target="/root/.local/state/opencode" Default="/mnt/user/appdata/opencode/state" Mode="rw" Description="Persistent application state." Type="Path" Display="advanced" Required="true" Mask="false">/mnt/user/appdata/opencode/state</Config>
+  <Config Name="Workspace" Target="/workspace" Default="" Mode="rw" Description="Choose the project folder OpenCode may read and modify." Type="Path" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Server Password" Target="OPENCODE_SERVER_PASSWORD" Default="" Mode="" Description="Set your own server password." Type="Variable" Display="always" Required="true" Mask="true"></Config>
+</Container>
