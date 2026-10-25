@@ -42,8 +42,8 @@ This template contains no personal server address or credentials. Each installer
 
 ## Validation and Community Applications
 
-XML, JSON, icon format and publication contents were checked locally. Fresh Unraid installation, browser login, model response and persistence after recreation still require live testing. This is not yet a verified Community Applications listing.
+XML, JSON, icon format and publication contents were checked locally. On 2026-10-25, the user confirmed browser access with separate appdata, Ollama responses after manual provider configuration, and the icon. The existing-appdata installation also worked after restart. Full recreation persistence, workspace edits and rejection of an incorrect password remain unverified; see TESTING.md. This repository is not yet listed in Community Applications.
 
-Complete `TESTING.md` before submission. Search Apps for an existing template using the same image and review [CA policies](https://forums.unraid.net/topic/87144-ca-application-policies-privacy-policy/). Submit through the form linked in that policy thread. Moderator approval is required. The account owner must confirm the policy's two-factor authentication requirement themselves.
+Complete `TESTING.md` before submission. Search Apps for an existing template using the same image and review [CA policies](https://forums.unraid.net/topic/87144-ca-application-policies-privacy-policy/). Submit through [the Community Applications portal](https://ca.unraid.net/submit). Moderator approval is required. The account owner must confirm the policy's two-factor authentication requirement themselves.
 
 Template support: [repository issues](https://github.com/lwkalis/unraid-templates/issues). Product: [OpenCode](https://opencode.ai).
