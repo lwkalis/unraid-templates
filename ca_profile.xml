@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommunityApplications>
+  <Profile>Unraid templates maintained by lwkalis. Includes OpenCode with a browser interface and instructions for connecting your own Ollama server. Template support: https://github.com/lwkalis/unraid-templates/issues</Profile>
+  <Icon>https://raw.githubusercontent.com/lwkalis/unraid-templates/main/icons/opencode.png</Icon>
+  <WebPage>https://github.com/lwkalis/unraid-templates</WebPage>
+</CommunityApplications>
