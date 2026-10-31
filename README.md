@@ -26,9 +26,27 @@ Apply and refresh the Docker page. Try a hard refresh if the question mark remai
 2. Copy to `/boot/config/plugins/dockerMan/templates-user/my-OpenCode.xml` on Unraid. Back up an existing file at that location before replacing it.
 3. Open Docker > Add Container and select the OpenCode user template.
 4. For a second test instance, choose a different name, unused host port and separate appdata directories. Do not share live appdata between two instances.
-5. Choose a workspace and password. Start the container and open WebUI.
+5. Choose a workspace and password. Start the container and follow Browser sign-in below, then open WebUI.
 
 Publishing this repository does not change existing installations. Preserve their settings. Before adding data/state mappings to an existing container, back up those container directories: an empty host mapping hides the old directory.
+
+## Browser sign-in (including repeating login prompts)
+
+OpenCode 2.0.32 can repeatedly challenge unauthenticated background requests when accessed over plain HTTP on a LAN. This can interrupt the browser's login prompt ([issue #1](https://github.com/lwkalis/unraid-templates/issues/1)). Use a one-time pairing link to establish a browser session before opening the app.
+
+Download [scripts/pair-browser.sh](scripts/pair-browser.sh) from this repository to your Unraid host. In Unraid Terminal, run:
+
+```sh
+sh /path/to/pair-browser.sh http://YOUR-UNRAID-HOST:4096 OpenCode
+```
+
+Replace the URL with the exact address and **host port** you use for WebUI, and `OpenCode` with your container name. Open the printed link directly in the browser you want to connect. It sets a session cookie and redirects to the app, avoiding password entry in the repeating prompt. The link works once and expires after five minutes; run the helper again for another browser. Treat the link as a temporary credential and do not post it in issues.
+
+The helper uses Docker and standard shell tools on the host and BusyBox wget in the pinned upstream image. It calls the **already running container** on port 4096; it does not start a second OpenCode service or change appdata. Existing installations can use it immediately without reinstalling the template. Use the same hostname and port afterward so the browser sends the session cookie. Changing the server password invalidates paired sessions.
+
+The username is fixed to `opencode` in this upstream version; `OPENCODE_SERVER_USERNAME` is not supported. Set the password through Unraid's **Server Password** container field and Apply. Removing or emptying the password does **not** disable authentication: the CLI generates a random password instead. The template therefore keeps the password required and does not offer a nonfunctional authentication-disable switch.
+
+This is a supported pairing workaround for the login prompt problem, not a patch to the embedded upstream UI. The upstream implementation is documented by its [pairing API](https://github.com/anomalyco/opencode/blob/v2.0.32/packages/protocol/src/groups/server.ts), [browser session handler](https://github.com/anomalyco/opencode/blob/v2.0.32/packages/server/src/handlers/server.ts), [fixed username](https://github.com/anomalyco/opencode/blob/v2.0.32/packages/server/src/auth.ts), and [password startup behavior](https://github.com/anomalyco/opencode/blob/v2.0.32/packages/cli/src/server-process.ts).
 
 ## Use your own Ollama server
 
