@@ -33,3 +33,18 @@ curl --fail --max-time 10 http://YOUR-OLLAMA-HOST:11434/api/tags
 ```
 
 This checks host connectivity only. Confirm OpenCode's connection by selecting an Ollama model in WebUI and sending a short prompt.
+
+## Pairing regression checks (issue #1)
+
+The helper has automated shell tests for URL validation, container selection, password handling, API failure and malformed responses. Run `sh tests/pair-browser.test.sh` from the repository root. These use a mock Docker executable and do not establish a real OpenCode session.
+
+Live checks remain pending on Unraid with image 2.0.32:
+
+1. In a fresh browser profile, confirm the reported repeating prompt on plain HTTP, then close that tab.
+2. Run `sh scripts/pair-browser.sh http://YOUR-UNRAID-HOST:HOST-PORT OpenCode` and open the link directly. Confirm redirect to the app and successful event streaming without repeated login prompts in Chrome and Vivaldi, including Android.
+3. Confirm the same link cannot be redeemed twice; an unused link expires after five minutes.
+4. Confirm a new link works in another browser and an alternate mapped host port.
+5. Confirm the password remains required for unauthenticated API requests. Change the password through Unraid, Apply, and confirm old browser sessions are rejected and a new pairing link works.
+6. Confirm sessions and appdata are preserved. Test failures with a stopped container and an incorrect password without sharing credentials or pairing links in logs.
+
+Automated tests do not verify the embedded UI, actual Docker image utilities, or real browser cookie behavior.
