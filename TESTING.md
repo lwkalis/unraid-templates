@@ -47,4 +47,4 @@ Live checks remain pending on Unraid with image 2.0.32:
 5. Confirm the password remains required for unauthenticated API requests. Change the password through Unraid, Apply, and confirm old browser sessions are rejected and a new pairing link works.
 6. Confirm sessions and appdata are preserved. Test failures with a stopped container and an incorrect password without sharing credentials or pairing links in logs.
 
-Automated tests do not verify the embedded UI, actual Docker image utilities, or real browser cookie behavior.
+On 2026-10-31, [CI run 41197311316](https://github.com/lwkalis/unraid-templates/actions/runs/41197311316) passed XML parsing, 23 shell checks, and integration against the actual OpenCode 2.0.32 image. Its BusyBox wget successfully issued a pairing code; curl redeemed it for a cookie and authenticated /api/info. Reusing the link and requesting /api/info without credentials both returned 401. Automated tests do not verify the embedded UI or real browser behavior on Unraid.
